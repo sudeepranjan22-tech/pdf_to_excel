@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PDF to Excel Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .upload-box {
+      background-color: fae9c8;
+      border: 2px dashed #000;
+      padding: 30px;
+      width: 400px;
+      margin: auto;
+    }
+    .upload{
+      background-color:#21a149;
+      border-width: 1px;
+      border-color:#51a269 ;
+      font-weight:bold;
+      font-size:15px;
+      cursor:pointer;
+      border-radius:5px; 
+      margin-top:5px;
+      color:aliceblue;
+      margin-bottom:5px;  
+      padding: 10px;
+
+    }
+
+    .upload:hover{
+      opacity: 0.7;
+      }
+    .upload:active{
+      opacity: 1;
+    }  
+
+    input[type="file"]{
+      margin-top: 15px;
+      text-align: center;
+
+    } 
+    input[type="submit"] {
+      margin-top: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body style="background-color:#fceed1;">
+
+  <h1 style="font-size:50px;">Convert PDF to Excel</h1>
+  <h3>Convert your image format PDF to Excel Spreadsheet</h3>
+  <div class="upload-box">
+    <form action="../backend/upload.php" method="POST" enctype="multipart/form-data">
+      <input class="choose-file" type="file" name="pdf_file" accept="application/pdf" required><br><br>
+      <input class="upload" type="submit" value="Upload & Convert">
+    </form>
+  </div>
+  <br><br>
+
+  <div id="statusMessage">
+    <!-- This will show success if ?status=success is in URL -->
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('status') === 'success') {
+        document.write('<span style="color:green; font-weight:bold; font-size: 20px; "> Success! File converted.</span>');
+        setTimeout(() => {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }, 100); 
+      }
+    </script>
+  </div>
+  
+</body>
+</html>
